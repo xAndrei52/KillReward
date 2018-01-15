@@ -2,6 +2,7 @@ name: KillMoney
 main: KillMoney\KillMoney
 version: 1.0.0
 api: 3.0.0-ALPHA10
+depend: [EconomyAPI]
 
 author: kenygamer
 description: A PocketMine-MP plugin that allows you to give your players the opportunity to earn money by killing other players
