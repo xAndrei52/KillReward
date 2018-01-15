@@ -41,7 +41,7 @@ class KillMoney extends PluginBase implements Listener{
     $victim = $event->getPlayer();
     if($victim->getLastDamageCause() instanceof EntityDamageByEntityEvent){
       if($victim->getLastDamageCause()->getDamager() instanceof Player){
-        if(empty($this->getConfig()->get("worlds")) or in_array($victim->getLevel()->getName(), $this->getConfig()->get("worlds"))){
+        if(empty($this->getConfig()->get("worlds", [])) or in_array($victim->getLevel()->getName(), $this->getConfig()->get("worlds", []))){
           $killer = $victim->getLastDamageCause()->getDamager();
         
           if(!EconomyAPI::getInstance()->addMoney($killer, $this->getConfig()->get("money", 100))){
