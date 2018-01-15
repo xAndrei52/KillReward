@@ -1,0 +1,9 @@
+---
+
+worlds: []
+money: 100
+messages:
+ enable: true
+ message: "You have earned %MONEY% for killing %PLAYER%!"
+ 
+...
