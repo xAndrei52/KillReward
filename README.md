@@ -4,6 +4,7 @@
 ![](https://img.shields.io/github/downloads/kenygamer/KillMoney/total.svg)
 
 KillMoney is a PocketMine-MP plugin that allows you to give your players the opportunity to earn money by killing other players.
+
 ## Permissions
 ```yml
 killmoney:
