@@ -20,6 +20,7 @@ declare(strict_types=1);
 namespace KillMoney;
 
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
