@@ -53,7 +53,8 @@ class KillMoney extends PluginBase implements Listener{
           }
         
           if($this->getConfig()->getNested("messages.enable", true)){
-            $msg = str_replace(["%MONEY%", "%PLAYER%"], [$this->getConfig()->get("money", 100), $victim->getName()], $this->getConfig()->getNested("messages.message", "You have earned %MONEY% for killing %PLAYER%"));
+            $msg = str_replace("%MONEY%", $this->getConfig()->get("money", 100), $this->getConfig()->getNested("messages.message", "You have earned %MONEY% for killing %PLAYER%"));
+            $msg = str_replace("%PLAYER%", $victim->getName(), $msg);
             $killer->sendMessage($msg);
           }
         }
