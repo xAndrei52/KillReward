@@ -4,6 +4,8 @@ worlds: []
 money: 100
 messages:
  enable: true
- message: "You have earned $%MONEY% for killing %PLAYER%!"
+ message: "§b§l(PLAYERKILL)&r §dYou have earned §5%MONEY% §dfor killing §5%PLAYER%"
+mob-money: 50
+ mobmessage: "§e§l(MOBKILL)§r §6You have earned §e%MONEY% §6for killing §e%MOB%"
  
 ...
