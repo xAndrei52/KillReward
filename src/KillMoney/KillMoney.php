@@ -41,14 +41,15 @@ class KillMoney extends PluginBase implements Listener{
   /**
    * @param PlayerDeathEvent $event
    */
+
   public function onPlayerDeath(PlayerDeathEvent $event) : void{
     $victim = $event->getPlayer();
     if($victim->getLastDamageCause() instanceof EntityDamageByEntityEvent){
       if($victim->getLastDamageCause()->getDamager() instanceof Player){
         if(empty($this->getConfig()->get("worlds", [])) or in_array($victim->getLevel()->getName(), $this->getConfig()->get("worlds", []))){
-          $killer = $victim->getLastDamageCause()->getDamager();
-        
-          if(!EconomyAPI::getInstance()->addMoney($killer, $this->getConfig()->get("money", 100))){
+          $killer = $victim->getLastDamageCause()->getDamager();    
+
+         if(!EconomyAPI::getInstance()->addMoney($killer, $this->getConfig()->get("money", 100))){
             $this->getLogger()->error("Failed to add money due to EconomyAPI error");
             return;
           }
@@ -57,6 +58,13 @@ class KillMoney extends PluginBase implements Listener{
             $msg = str_replace("%PLAYER%", $victim->getName(), $msg);
             $killer->sendMessage($msg);
           }
+          }
+          }
+          }
+          }
+          /**
+           * @param EntityDeathEvent $event
+           */
           public function onEntityDeath(EntityDeathEvent $event) : void{
           $victim = $event->getEntity();
     if($victim->getLastDamageCause() instanceof EntityDamageByEntityEvent){
@@ -76,5 +84,3 @@ class KillMoney extends PluginBase implements Listener{
       }
     }
   }
-  
-}
