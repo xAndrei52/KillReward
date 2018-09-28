@@ -19,7 +19,7 @@ declare(strict_types=1);
 
 namespace KillMoney;
 
-use pocketmine\event\entity\{EntityDeathEvent, ntityDamageByEntityEvent};
+use pocketmine\event\entity\{EntityDeathEvent, EntityDamageByEntityEvent};
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\Player;
