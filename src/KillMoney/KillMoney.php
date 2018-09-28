@@ -66,19 +66,19 @@ class KillMoney extends PluginBase implements Listener{
            * @param EntityDeathEvent $event
            */
           public function onEntityDeath(EntityDeathEvent $event) : void{
-          $victim = $event->getEntity();
-    if($victim->getLastDamageCause() instanceof EntityDamageByEntityEvent){
-      if($victim->getLastDamageCause()->getDamager() instanceof Player){
-          $killer = $victim->getLastDamageCause()->getDamager();
+          $mobvictim = $event->getEntity();
+    if($mobvictim->getLastDamageCause() instanceof EntityDamageByEntityEvent){
+      if($mobvictim->getLastDamageCause()->getDamager() instanceof Player){
+          $killerplayer = $mobvictim->getLastDamageCause()->getDamager();
         
-          if(!EconomyAPI::getInstance()->addMoney($killer, $this->getConfig()->get("mob-money", 50))){
+          if(!EconomyAPI::getInstance()->addMoney($killerplayer, $this->getConfig()->get("mob-money", 50))){
             $this->getLogger()->error("Failed to add money due to EconomyAPI error");
             return;
           }
           if($this->getConfig()->getNested("messages.enable", true)){
-            $msg = str_replace("%MONEY%", $this->getConfig()->get("mob-money", 50), $this->getConfig()->getNested("messages.mobmessage", "§e§l(MOBKILL)§r §6You have earned §e%MONEY% §6for killing §e%MOB%"));
-            $msg = str_replace("%MOB%", $victim->getName(), $msg);
-            $killer->sendMessage($msg);
+            $message = str_replace("%MOB_MONEY%", $this->getConfig()->get("mob-money", 50), $this->getConfig()->getNested("messages.mobmessage", "§e§l(MOBKILL)§r §6You have earned §e%MOB_MONEY% §6for killing §e%MOB%"));
+            $message = str_replace("%MOB%", $victim->getName(), $message);
+            $killerplayer->sendMessage($message);
           }
         }
       }
