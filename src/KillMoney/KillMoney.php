@@ -19,7 +19,7 @@ declare(strict_types=1);
 
 namespace KillMoney;
 
-use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\event\entity\{EntityDeathEvent, ntityDamageByEntityEvent};
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\Player;
@@ -52,10 +52,25 @@ class KillMoney extends PluginBase implements Listener{
             $this->getLogger()->error("Failed to add money due to EconomyAPI error");
             return;
           }
-        
           if($this->getConfig()->getNested("messages.enable", true)){
-            $msg = str_replace("%MONEY%", $this->getConfig()->get("money", 100), $this->getConfig()->getNested("messages.message", "You have earned %MONEY% for killing %PLAYER%"));
+            $msg = str_replace("%MONEY%", $this->getConfig()->get("money", 100), $this->getConfig()->getNested("messages.message", "§b§l(PLAYERKILL)&r §dYou have earned §5%MONEY% §dfor killing §5%PLAYER%"));
             $msg = str_replace("%PLAYER%", $victim->getName(), $msg);
+            $killer->sendMessage($msg);
+          }
+          public function onEntityDeath(EntityDeathEvent $event) : void{
+          $victim = $event->getEntity();
+    if($victim->getLastDamageCause() instanceof EntityDamageByEntityEvent){
+      if($victim->getLastDamageCause()->getDamager() instanceof Entity){
+        if(empty($this->getConfig()->get("worlds", [])) or in_array($victim->getLevel()->getName(), $this->getConfig()->get("worlds", []))){
+          $killer = $victim->getLastDamageCause()->getDamager();
+        
+          if(!EconomyAPI::getInstance()->addMoney($killer, $this->getConfig()->get("mob-money", 100))){
+            $this->getLogger()->error("Failed to add money due to EconomyAPI error");
+            return;
+          }
+          if($this->getConfig()->getNested("messages.enable", true)){
+            $msg = str_replace("%MONEY%", $this->getConfig()->get("money", 100), $this->getConfig()->getNested("messages.mobmessage", "§e§l(MOBKILL)§r §6You have earned §e%MONEY% §6for killing §e%MOB%"));
+            $msg = str_replace("%MOB%", $victim->getName(), $msg);
             $killer->sendMessage($msg);
           }
         }
