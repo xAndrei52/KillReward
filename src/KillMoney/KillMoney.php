@@ -85,3 +85,4 @@ class KillMoney extends PluginBase implements Listener{
       }
     }
   }
+}
