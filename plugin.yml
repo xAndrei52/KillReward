@@ -4,7 +4,7 @@ version: 2.0.0-alpha
 api: [3.0.0, 4.0.0]
 
 author: kenygamer, taken over by iZeaoGamer
-description: A PocketMine-MP plugin that allows you to give your players the opportunity to earn money by killing other players
+description: A PocketMine-MP plugin that allows you to give your players the opportunity to earn money by killing other players and mobs.
 
 permissions:
  killmoney:
