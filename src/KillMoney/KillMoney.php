@@ -69,7 +69,7 @@ class KillMoney extends PluginBase implements Listener{
           $mobvictim = $event->getEntity();
     if($mobvictim->getLastDamageCause() instanceof EntityDamageByEntityEvent){
       if($mobvictim->getLastDamageCause()->getDamager() instanceof Player){
-        if(empty($this->getConfig()->get("worlds", [])) or in_array($victim->getLevel()->getName(), $this->getConfig()->get("worlds", []))){
+        if(empty($this->getConfig()->get("worlds", [])) or in_array($mobvictim->getLevel()->getName(), $this->getConfig()->get("worlds", []))){
           $killerplayer = $mobvictim->getLastDamageCause()->getDamager();
         
           if(!EconomyAPI::getInstance()->addMoney($killerplayer, $this->getConfig()->get("mob-money", 50))){
@@ -78,7 +78,7 @@ class KillMoney extends PluginBase implements Listener{
           }
           if($this->getConfig()->getNested("messages.enable", true)){
             $message = str_replace("%MOB_MONEY%", $this->getConfig()->get("mob-money", 50), $this->getConfig()->getNested("messages.mobmessage", "§e§l(MOBKILL)§r §6You have earned §e%MOB_MONEY% §6for killing §e%MOB%"));
-            $message = str_replace("%MOB%", $victim->getName(), $message);
+            $message = str_replace("%MOB%", $mobvictim->getName(), $message);
             $killerplayer->sendMessage($message);
           }
         }
