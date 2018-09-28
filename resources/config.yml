@@ -15,6 +15,6 @@ messages:
 mob-money: 50
 # How much money should you get when you kill a mob? Default: $50
 
- mobmessage: "§e§l(MOBKILL)§r §6You have earned §e%MONEY% §6for killing §e%MOB%"
+ mobmessage: "§e§l(MOBKILL)§r §6You have earned §e%MOB_MONEY% §6for killing §e%MOB%"
  # Mob kill message, sent to the killer.
 ...
