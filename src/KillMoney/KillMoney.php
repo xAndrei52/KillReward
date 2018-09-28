@@ -63,12 +63,12 @@ class KillMoney extends PluginBase implements Listener{
       if($victim->getLastDamageCause()->getDamager() instanceof Player){
           $killer = $victim->getLastDamageCause()->getDamager();
         
-          if(!EconomyAPI::getInstance()->addMoney($killer, $this->getConfig()->get("mob-money", 100))){
+          if(!EconomyAPI::getInstance()->addMoney($killer, $this->getConfig()->get("mob-money", 50))){
             $this->getLogger()->error("Failed to add money due to EconomyAPI error");
             return;
           }
           if($this->getConfig()->getNested("messages.enable", true)){
-            $msg = str_replace("%MONEY%", $this->getConfig()->get("money", 100), $this->getConfig()->getNested("messages.mobmessage", "§e§l(MOBKILL)§r §6You have earned §e%MONEY% §6for killing §e%MOB%"));
+            $msg = str_replace("%MONEY%", $this->getConfig()->get("mob-money", 50), $this->getConfig()->getNested("messages.mobmessage", "§e§l(MOBKILL)§r §6You have earned §e%MONEY% §6for killing §e%MOB%"));
             $msg = str_replace("%MOB%", $victim->getName(), $msg);
             $killer->sendMessage($msg);
           }
