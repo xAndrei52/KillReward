@@ -9,6 +9,7 @@ If you want to request an issue, then please open one, by clicking the issues ta
 ## What is this plugin?
 This plugin was and still is originally designed to earn money by killing other players however, I've added a way so you can also gain mob kills as well = Earn money when killed a mob.
 
+## What classes do you use to make this plugin function?
 We use the entityDeathEvent class to allow us to receive the mobs killed on entityDeath event.
 We also use the PlayerDeathEvent class to allow us to receive the player death event when killed by a killer, and also functions the giving money class / function with a known popular plugin called "EconomyAPI".
 This plugin also supports / is compatible with PureEntities or any working AI plugins as well.
