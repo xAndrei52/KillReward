@@ -1,6 +1,6 @@
 name: KillMoney
 main: KillMoney\KillMoney
-version: 2.0.0-alpha
+version: 2.0.0-beta
 api: [3.0.0, 4.0.0]
 
 author: kenygamer, taken over by iZeaoGamer
