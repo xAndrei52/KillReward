@@ -31,6 +31,7 @@ use onebone\economyapi\EconomyAPI;
 class KillMoney extends PluginBase implements Listener{
       /** @var \onebone\economyapi\EconomyAPI */
     private $economy;
+    private $pureEntities;
   
   public function onEnable() : void{
     if(!is_dir($this->getDataFolder())){
@@ -51,13 +52,12 @@ class KillMoney extends PluginBase implements Listener{
             $this->getServer()->getPluginManager()->disablePlugin($this);
             return false;
         }
+        $this->pureEntities = $this->getServer()->getPluginManager()->getPlugin("PureEntities");
+        if (!$this->pureEntities) {
+            $this->getLogger()->info("PureEntities is not installed on your server system. This is an optional plugin to allow you to use the Mob AI system with this plugin. Disabling AI System."); //Will add more AI plugin systems once more become stable and are working.
+            return false;
+        }
         return true;
-    }
-        /**
-     * @return \onebone\economyapi\EconomyAPI
-     */
-    public function getEconomy() : EconomyAPI{
-        return $this->economy;
     }
   /**
    * @param PlayerDeathEvent $event
