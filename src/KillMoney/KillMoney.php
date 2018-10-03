@@ -25,19 +25,40 @@ use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
+use onebone\economyapi\EconomyAPI;
 
 use onebone\economyapi\EconomyAPI;
 
 class KillMoney extends PluginBase implements Listener{
+      /** @var \onebone\economyapi\EconomyAPI */
+    private $economy;
   
   public function onEnable() : void{
     if(!is_dir($this->getDataFolder())){
       @mkdir($this->getDataFolder());
     }
+     if ($this->checkDependents()) {
     $this->saveDefaultConfig();
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
   }
-  
+      /**
+     * @return bool
+     */
+    public function checkDependents() : bool{
+        $this->economy = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
+        if (is_null($this->economy)) {
+            $this->getLogger()->critical("EconomyAPI is required. Plugin disabled.");
+            $this->getServer()->getPluginManager()->disablePlugin($this);
+            return false;
+        }
+        return true;
+    }
+        /**
+     * @return \onebone\economyapi\EconomyAPI
+     */
+    public function getEconomy() : EconomyAPI{
+        return $this->economy;
+    }
   /**
    * @param PlayerDeathEvent $event
    */
