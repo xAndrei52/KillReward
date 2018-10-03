@@ -25,7 +25,6 @@ use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
-use onebone\economyapi\EconomyAPI;
 
 use onebone\economyapi\EconomyAPI;
 
@@ -41,6 +40,7 @@ class KillMoney extends PluginBase implements Listener{
     $this->saveDefaultConfig();
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
   }
+}
       /**
      * @return bool
      */
